@@ -12,7 +12,13 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	@Override
 	String search(String text) throws Exception {
 		//Write your code here
-		return null;
+		Connection connection = DriverManager.getConnection("postgres://nfchtqwaxpkada:a683b7e36275c3111d58e6e9142f2515030677e9da13db0c6df4aff9f08b1c4e@ec2-54-225-88-191.compute-1.amazonaws.com:5432/df7tdl564epu2l");
+		PreparedStatement stmt = connection.prepareStatement("SELECT respond FROM chatbot where name=" + text + ";");
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next())
+			return rs.getString(0);
+		else
+			return null;
 	}
 	
 	
