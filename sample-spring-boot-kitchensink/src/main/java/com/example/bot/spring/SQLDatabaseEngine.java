@@ -13,7 +13,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	String search(String text) throws Exception {
 		//Write your code here
 		Connection connection = this.getConnection();
-		PreparedStatement stmt = connection.prepareStatement("SELECT repsond FROM chatbot where word='" + text + "';");
+		PreparedStatement stmt = connection.prepareStatement("SELECT response FROM chatbot where keyword='" + text + "';");
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next())
 			return rs.getString(1);
